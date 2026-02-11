@@ -10,11 +10,11 @@ interface MemoryItem {
 }
 
 const SECTIONS = [
-  { key: "now", label: "Now", description: "Current focus & priorities" },
-  { key: "open_threads", label: "Open Threads", description: "Active items being tracked" },
-  { key: "parked", label: "Parked", description: "Ideas & items for later" },
-  { key: "people_context", label: "People & Context", description: "Key people info" },
-  { key: "recent_decisions", label: "Recent Decisions", description: "Decisions with dates" },
+  { key: "now", label: "עכשיו", description: "מיקוד ועדיפויות נוכחיים" },
+  { key: "open_threads", label: "נושאים פתוחים", description: "פריטים פעילים במעקב" },
+  { key: "parked", label: "בהמתנה", description: "רעיונות ופריטים להמשך" },
+  { key: "people_context", label: "אנשים והקשר", description: "מידע על אנשים מרכזיים" },
+  { key: "recent_decisions", label: "החלטות אחרונות", description: "החלטות עם תאריכים" },
 ] as const;
 
 type SectionKey = (typeof SECTIONS)[number]["key"];
@@ -41,15 +41,15 @@ function LineCountBadge({ count }: { count: number }) {
   return (
     <div className={`flex items-center gap-2 text-sm ${colorClass}`}>
       <span className="font-mono font-medium">{count}</span>
-      <span>/ 100 items</span>
+      <span>/ 100 פריטים</span>
       {isDanger && (
         <span className="ml-1 rounded-md bg-danger/10 px-2 py-0.5 text-xs font-medium text-danger">
-          Near limit
+          קרוב למגבלה
         </span>
       )}
       {isWarning && !isDanger && (
         <span className="ml-1 rounded-md bg-warning/10 px-2 py-0.5 text-xs font-medium text-warning">
-          Getting full
+          מתמלא
         </span>
       )}
     </div>
@@ -129,7 +129,7 @@ function SectionMoveDropdown({
       <button
         onClick={() => setOpen(!open)}
         className="rounded p-1 text-muted transition-colors hover:bg-border/50 hover:text-foreground"
-        title="Move to section"
+        title="העבר למקטע"
       >
         <svg
           width="14"
@@ -197,7 +197,7 @@ function MemoryItemRow({
         <span
           className="flex-1 cursor-pointer text-sm text-foreground/90 leading-relaxed"
           onClick={() => setEditing(true)}
-          title="Click to edit"
+          title="לחץ לעריכה"
         >
           {item.content}
         </span>
@@ -210,7 +210,7 @@ function MemoryItemRow({
         <button
           onClick={() => onDelete(item.id)}
           className="rounded p-1 text-muted transition-colors hover:bg-danger/10 hover:text-danger"
-          title="Delete item"
+          title="מחק פריט"
         >
           <svg
             width="14"
@@ -258,7 +258,7 @@ function AddItemInput({
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Add item... (Enter to save)"
+        placeholder="פריט חדש... (Enter לשמירה)"
         className="w-full rounded-md border border-border bg-transparent px-2 py-1.5 text-sm text-foreground placeholder:text-muted/60 outline-none transition-colors focus:border-primary"
       />
     </div>
@@ -318,7 +318,7 @@ function SectionCard({
       <div className="p-2">
         {items.length === 0 && (
           <p className="px-2 py-3 text-center text-xs text-muted/60">
-            No items yet
+            אין פריטים
           </p>
         )}
         {items
@@ -437,7 +437,7 @@ export default function MemoryPage() {
   if (loading) {
     return (
       <div className="flex h-full items-center justify-center">
-        <div className="text-sm text-muted">Loading memory...</div>
+        <div className="text-sm text-muted">טוען זיכרון...</div>
       </div>
     );
   }
@@ -448,9 +448,9 @@ export default function MemoryPage() {
       <div className="mb-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Memory</h1>
+            <h1 className="text-2xl font-bold text-foreground">זיכרון</h1>
             <p className="mt-1 text-sm text-muted">
-              Active context. Keep it under 100 lines.
+              הקשר פעיל. שמור מתחת ל-100 שורות.
             </p>
           </div>
           <LineCountBadge count={totalCount} />
@@ -465,7 +465,7 @@ export default function MemoryPage() {
             onClick={() => setError(null)}
             className="ml-2 font-medium underline"
           >
-            Dismiss
+            סגור
           </button>
         </div>
       )}

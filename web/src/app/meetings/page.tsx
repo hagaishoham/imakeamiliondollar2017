@@ -122,7 +122,7 @@ export default function MeetingsPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-muted text-sm animate-pulse">
-          Loading meetings...
+          טוען...
         </div>
       </div>
     );
@@ -132,12 +132,12 @@ export default function MeetingsPage() {
     <div className="mx-auto max-w-3xl px-4 py-8">
       {/* Header */}
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Meetings</h1>
+        <h1 className="text-2xl font-bold">פגישות</h1>
         <button
           onClick={() => setShowForm((prev) => !prev)}
           className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover"
         >
-          {showForm ? "Cancel" : "New Meeting"}
+          {showForm ? "ביטול" : "פגישה חדשה"}
         </button>
       </div>
 
@@ -145,19 +145,19 @@ export default function MeetingsPage() {
       {showForm && (
         <div className="mb-6 rounded-xl border border-border bg-card p-5 space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium">Title</label>
+            <label className="mb-1 block text-sm font-medium">כותרת</label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Meeting title"
+              placeholder="כותרת פגישה"
               className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 placeholder:text-muted"
             />
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
             <div>
-              <label className="mb-1 block text-sm font-medium">Date</label>
+              <label className="mb-1 block text-sm font-medium">תאריך</label>
               <input
                 type="date"
                 value={date}
@@ -167,7 +167,7 @@ export default function MeetingsPage() {
             </div>
             <div>
               <label className="mb-1 block text-sm font-medium">
-                Attendees
+                משתתפים
               </label>
               <input
                 type="text"
@@ -178,12 +178,12 @@ export default function MeetingsPage() {
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium">Type</label>
+              <label className="mb-1 block text-sm font-medium">סוג</label>
               <input
                 type="text"
                 value={type}
                 onChange={(e) => setType(e.target.value)}
-                placeholder="e.g., 1:1, standup, planning"
+                placeholder="לדוגמה: 1:1, סטנדאפ, תכנון"
                 className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 placeholder:text-muted"
               />
             </div>
@@ -191,12 +191,12 @@ export default function MeetingsPage() {
 
           <div>
             <label className="mb-1 block text-sm font-medium">
-              Raw Transcript
+              תמליל
             </label>
             <textarea
               value={rawTranscript}
               onChange={(e) => setRawTranscript(e.target.value)}
-              placeholder="Paste your meeting transcript here..."
+              placeholder="הדבק תמליל כאן..."
               rows={10}
               className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 placeholder:text-muted resize-y"
             />
@@ -208,7 +208,7 @@ export default function MeetingsPage() {
               disabled={saving}
               className="rounded-lg bg-primary px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-50"
             >
-              {saving ? "Saving..." : "Save"}
+              {saving ? "שומר..." : "שמור"}
             </button>
           </div>
         </div>
@@ -217,7 +217,7 @@ export default function MeetingsPage() {
       {/* Meetings List */}
       {sorted.length === 0 ? (
         <div className="py-12 text-center text-muted">
-          No meetings yet. Create one to get started.
+          אין פגישות עדיין.
         </div>
       ) : (
         <div className="space-y-3">
@@ -237,7 +237,7 @@ export default function MeetingsPage() {
                   >
                     <div className="mb-1 flex items-center gap-2">
                       <span className="text-base font-semibold truncate">
-                        {meeting.title || "Untitled"}
+                        {meeting.title || "ללא כותרת"}
                       </span>
                       <span
                         className={`shrink-0 rounded-full px-2 py-0.5 text-xs font-medium ${
@@ -246,7 +246,7 @@ export default function MeetingsPage() {
                             : "bg-warning/20 text-warning"
                         }`}
                       >
-                        {meeting.status}
+                        {meeting.status === "processed" ? "מעובד" : "לא מעובד"}
                       </span>
                     </div>
                     <div className="text-sm text-muted mb-1">
@@ -287,10 +287,10 @@ export default function MeetingsPage() {
                                 d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                               />
                             </svg>
-                            Processing...
+                            מעבד...
                           </>
                         ) : (
-                          "Process with AI"
+                          "עבד עם AI"
                         )}
                       </button>
                     )}
@@ -298,7 +298,7 @@ export default function MeetingsPage() {
                     <button
                       onClick={() => handleDelete(meeting.id)}
                       className="rounded-lg p-1.5 text-muted transition-colors hover:text-danger"
-                      aria-label="Delete meeting"
+                      aria-label="מחק פגישה"
                     >
                       <svg
                         width="14"

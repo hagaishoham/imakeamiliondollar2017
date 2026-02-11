@@ -14,11 +14,11 @@ interface DailyNoteDetail {
 
 type EditableField = "decisions" | "meetings_conversations" | "notes" | "summary";
 
-const SECTIONS: { field: EditableField; label: string }[] = [
-  { field: "decisions", label: "Decisions" },
-  { field: "meetings_conversations", label: "Meetings & Conversations" },
-  { field: "notes", label: "Notes" },
-  { field: "summary", label: "End of Day Summary" },
+const SECTIONS: { field: EditableField; label: string; placeholder: string }[] = [
+  { field: "decisions", label: "החלטות", placeholder: "כתוב את ההחלטות שלך..." },
+  { field: "meetings_conversations", label: "פגישות ושיחות", placeholder: "כתוב פגישות ושיחות..." },
+  { field: "notes", label: "הערות", placeholder: "כתוב את ההערות שלך..." },
+  { field: "summary", label: "סיכום יום", placeholder: "כתוב סיכום יום..." },
 ];
 
 function formatDate(mmddyy: string): string {
@@ -104,7 +104,7 @@ export default function NotePage({ params }: { params: Promise<{ id: string }> }
   if (loading) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <div className="py-12 text-center text-muted">Loading...</div>
+        <div className="py-12 text-center text-muted">טוען...</div>
       </div>
     );
   }
@@ -112,10 +112,10 @@ export default function NotePage({ params }: { params: Promise<{ id: string }> }
   if (!note) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <div className="py-12 text-center text-muted">Note not found.</div>
+        <div className="py-12 text-center text-muted">הרשומה לא נמצאה.</div>
         <div className="text-center">
           <Link href="/notes" className="text-sm text-primary hover:underline">
-            Back to Notes
+            חזרה להערות
           </Link>
         </div>
       </div>
@@ -129,13 +129,13 @@ export default function NotePage({ params }: { params: Promise<{ id: string }> }
           href="/notes"
           className="mb-3 inline-block text-sm text-muted transition-colors hover:text-foreground"
         >
-          &larr; Back to Notes
+          &rarr; חזרה להערות
         </Link>
         <h1 className="text-2xl font-bold">{formatDate(note.date)}</h1>
       </div>
 
       <div className="space-y-6">
-        {SECTIONS.map(({ field, label }) => (
+        {SECTIONS.map(({ field, label, placeholder }) => (
           <div key={field} className="rounded-xl border border-border bg-card p-5">
             <div className="mb-3 flex items-center justify-between">
               <label className="text-sm font-semibold text-foreground/80">
@@ -143,7 +143,7 @@ export default function NotePage({ params }: { params: Promise<{ id: string }> }
               </label>
               {savedField === field && (
                 <span className="text-xs text-success animate-pulse">
-                  Saved
+                  נשמר
                 </span>
               )}
             </div>
@@ -151,7 +151,7 @@ export default function NotePage({ params }: { params: Promise<{ id: string }> }
               value={note[field] || ""}
               onChange={(e) => handleChange(field, e.target.value)}
               onBlur={() => handleBlur(field)}
-              placeholder={`Write your ${label.toLowerCase()} here...`}
+              placeholder={placeholder}
               rows={4}
               className="w-full resize-y rounded-lg border-0 bg-transparent p-0 font-mono text-sm leading-relaxed text-foreground placeholder:text-muted/50 focus:outline-none focus:ring-0"
             />

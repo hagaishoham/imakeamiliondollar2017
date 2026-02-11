@@ -4,11 +4,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const nav = [
-  { href: "/", label: "Home", icon: "⌂" },
-  { href: "/tasks", label: "Tasks", icon: "☐" },
-  { href: "/scratchpad", label: "Pad", icon: "✎" },
-  { href: "/notes", label: "Notes", icon: "▤" },
-  { href: "/more", label: "More", icon: "⋯" },
+  { href: "/", label: "ראשי", icon: "⌂" },
+  { href: "/tasks", label: "משימות", icon: "☐" },
+  { href: "/scratchpad", label: "טיוטה", icon: "✎" },
+  { href: "/notes", label: "יומן", icon: "▤" },
+  { href: "/more", label: "עוד", icon: "⋯" },
 ];
 
 export function BottomNav() {

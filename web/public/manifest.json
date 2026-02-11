@@ -1,21 +1,18 @@
 {
-  "name": "AI OS - Personal Operating System",
+  "name": "AI OS - מערכת הפעלה אישית",
   "short_name": "AI OS",
-  "description": "Your personal AI-powered productivity system",
+  "description": "מערכת הפרודוקטיביות האישית שלך מבוססת AI",
   "start_url": "/",
   "display": "standalone",
+  "dir": "rtl",
+  "lang": "he",
   "background_color": "#f8f9fa",
   "theme_color": "#6366f1",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/icon-192.svg",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/svg+xml"
     }
   ]
 }

@@ -8,13 +8,13 @@ function relativeTime(dateStr: string): string {
   const then = new Date(dateStr).getTime();
   const diffSec = Math.floor((now - then) / 1000);
 
-  if (diffSec < 60) return "just now";
+  if (diffSec < 60) return "עכשיו";
   const diffMin = Math.floor(diffSec / 60);
-  if (diffMin < 60) return `${diffMin}m ago`;
+  if (diffMin < 60) return `${diffMin} ד׳ לפני`;
   const diffHr = Math.floor(diffMin / 60);
-  if (diffHr < 24) return `${diffHr}h ago`;
+  if (diffHr < 24) return `${diffHr} ש׳ לפני`;
   const diffDay = Math.floor(diffHr / 24);
-  return `${diffDay}d ago`;
+  return `${diffDay} י׳ לפני`;
 }
 
 export default function ScratchpadPage() {
@@ -138,9 +138,9 @@ export default function ScratchpadPage() {
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-foreground">Scratchpad</h1>
+        <h1 className="text-2xl font-bold text-foreground">טיוטה</h1>
         <p className="mt-1 text-sm text-muted">
-          Quick capture. Processed during sync.
+          רישום מהיר. מעובד בזמן סנכרון.
         </p>
       </div>
 
@@ -152,20 +152,20 @@ export default function ScratchpadPage() {
             value={input}
             onChange={handleInputChange}
             onKeyDown={handleKeyDown}
-            placeholder="Jot something down..."
+            placeholder="מה עובר לך בראש?"
             rows={1}
             className="w-full resize-none bg-transparent text-foreground placeholder:text-muted/60 text-base leading-relaxed outline-none"
           />
           <div className="flex items-center justify-between mt-2 pt-2 border-t border-border/50">
             <span className="text-xs text-muted">
-              Enter to add &middot; Shift+Enter for newline
+              Enter להוספה &middot; Shift+Enter לשורה חדשה
             </span>
             <button
               onClick={addItem}
               disabled={!input.trim() || submitting}
               className="px-4 py-1.5 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
-              {submitting ? "Adding..." : "Add"}
+              {submitting ? "מוסיף..." : "הוסף"}
             </button>
           </div>
         </div>
@@ -174,13 +174,13 @@ export default function ScratchpadPage() {
       {/* Items list */}
       {loading ? (
         <div className="flex justify-center py-12">
-          <div className="text-sm text-muted">Loading...</div>
+          <div className="text-sm text-muted">טוען...</div>
         </div>
       ) : items.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <div className="text-4xl mb-3 opacity-30">&#9998;</div>
           <p className="text-sm text-muted">
-            Nothing here yet. Start typing above.
+            אין פריטים. התחל לכתוב למעלה.
           </p>
         </div>
       ) : (
@@ -202,7 +202,7 @@ export default function ScratchpadPage() {
                 <button
                   onClick={() => deleteItem(item.id)}
                   className="shrink-0 mt-0.5 w-6 h-6 flex items-center justify-center rounded-md text-muted hover:text-danger hover:bg-danger/10 opacity-0 group-hover:opacity-100 transition-all"
-                  aria-label="Delete item"
+                  aria-label="מחק פריט"
                 >
                   &times;
                 </button>
@@ -220,7 +220,7 @@ export default function ScratchpadPage() {
                   : "border-border text-muted hover:text-foreground hover:border-foreground/30"
               }`}
             >
-              {clearConfirm ? "Confirm Clear All?" : "Clear All"}
+              {clearConfirm ? "בטוח? נקה הכל" : "נקה הכל"}
             </button>
           </div>
         </>

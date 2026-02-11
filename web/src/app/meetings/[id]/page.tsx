@@ -109,7 +109,7 @@ export default function MeetingPage({
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-muted text-sm animate-pulse">
-          Loading meeting...
+          טוען...
         </div>
       </div>
     );
@@ -122,9 +122,9 @@ export default function MeetingPage({
           href="/meetings"
           className="text-sm text-primary hover:underline"
         >
-          &larr; Back to Meetings
+          &rarr; חזרה לפגישות
         </Link>
-        <div className="py-12 text-center text-muted">Meeting not found.</div>
+        <div className="py-12 text-center text-muted">לא נמצא.</div>
       </div>
     );
   }
@@ -139,10 +139,10 @@ export default function MeetingPage({
           href="/meetings"
           className="text-sm text-primary hover:underline"
         >
-          &larr; Back to Meetings
+          &rarr; חזרה לפגישות
         </Link>
         {saving && (
-          <span className="text-xs text-muted animate-pulse">Saving...</span>
+          <span className="text-xs text-muted animate-pulse">נשמר...</span>
         )}
       </div>
 
@@ -153,14 +153,14 @@ export default function MeetingPage({
           value={meeting.title || ""}
           onChange={(e) => updateLocal("title", e.target.value)}
           onBlur={(e) => handleBlur("title", e.target.value)}
-          placeholder="Untitled Meeting"
+          placeholder="פגישה ללא כותרת"
           className="w-full bg-transparent text-xl font-bold focus:outline-none placeholder:text-muted"
         />
 
         {/* Metadata */}
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm text-muted">
           <div className="flex items-center gap-1.5">
-            <span className="font-medium text-foreground/70">Date:</span>
+            <span className="font-medium text-foreground/70">תאריך:</span>
             <input
               type="date"
               value={meeting.date || ""}
@@ -173,13 +173,13 @@ export default function MeetingPage({
           <span className="text-border">|</span>
 
           <div className="flex items-center gap-1.5">
-            <span className="font-medium text-foreground/70">Attendees:</span>
+            <span className="font-medium text-foreground/70">משתתפים:</span>
             <input
               type="text"
               value={meeting.attendees || ""}
               onChange={(e) => updateLocal("attendees", e.target.value)}
               onBlur={(e) => handleBlur("attendees", e.target.value)}
-              placeholder="Add attendees"
+              placeholder="הוסף משתתפים"
               className="bg-transparent focus:outline-none placeholder:text-muted/60"
             />
           </div>
@@ -187,13 +187,13 @@ export default function MeetingPage({
           <span className="text-border">|</span>
 
           <div className="flex items-center gap-1.5">
-            <span className="font-medium text-foreground/70">Type:</span>
+            <span className="font-medium text-foreground/70">סוג:</span>
             <input
               type="text"
               value={meeting.type || ""}
               onChange={(e) => updateLocal("type", e.target.value)}
               onBlur={(e) => handleBlur("type", e.target.value)}
-              placeholder="e.g., 1:1"
+              placeholder="לדוגמה: 1:1"
               className="bg-transparent focus:outline-none placeholder:text-muted/60"
             />
           </div>
@@ -207,7 +207,7 @@ export default function MeetingPage({
                 : "bg-warning/20 text-warning"
             }`}
           >
-            {meeting.status}
+            {meeting.status === "processed" ? "מעובד" : "לא מעובד"}
           </span>
         </div>
 
@@ -240,10 +240,10 @@ export default function MeetingPage({
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
                     />
                   </svg>
-                  Processing with AI...
+                  מעבד...
                 </>
               ) : (
-                "Process with AI"
+                "עבד עם AI"
               )}
             </button>
           </div>
@@ -256,7 +256,7 @@ export default function MeetingPage({
           {/* Summary */}
           <div className="rounded-xl border border-border bg-card p-5">
             <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
-              Summary
+              סיכום
             </h2>
             <textarea
               value={meeting.summary || ""}
@@ -270,7 +270,7 @@ export default function MeetingPage({
           {/* Action Items */}
           <div className="rounded-xl border border-border bg-card p-5">
             <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
-              Action Items
+              פריטי פעולה
             </h2>
             <textarea
               value={meeting.action_items || ""}
@@ -284,7 +284,7 @@ export default function MeetingPage({
           {/* Key Points */}
           <div className="rounded-xl border border-border bg-card p-5">
             <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
-              Key Points
+              נקודות מפתח
             </h2>
             <textarea
               value={meeting.key_points || ""}
@@ -300,7 +300,7 @@ export default function MeetingPage({
       {/* Raw Transcript */}
       <div className="rounded-xl border border-border bg-card p-5">
         <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
-          Raw Transcript
+          תמליל
         </h2>
         <textarea
           value={meeting.raw_transcript || ""}
@@ -308,7 +308,7 @@ export default function MeetingPage({
           onBlur={(e) => handleBlur("raw_transcript", e.target.value)}
           rows={16}
           className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary/40 resize-y"
-          placeholder="Paste meeting transcript here..."
+          placeholder="הדבק תמליל כאן..."
         />
       </div>
     </div>

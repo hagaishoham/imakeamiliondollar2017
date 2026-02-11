@@ -11,14 +11,14 @@ type Task = {
 };
 
 const SECTIONS = [
-  { key: "today", label: "Today", icon: "●", color: "text-primary" },
-  { key: "soon", label: "Soon", icon: "◐", color: "text-foreground" },
-  { key: "later", label: "Later", icon: "○", color: "text-muted" },
-  { key: "waiting", label: "Waiting", icon: "◷", color: "text-warning" },
-  { key: "agenda", label: "Agenda", icon: "◈", color: "text-foreground" },
-  { key: "inbox", label: "Inbox", icon: "▣", color: "text-primary" },
-  { key: "done", label: "Done", icon: "✓", color: "text-success" },
-  { key: "reference", label: "Reference", icon: "◆", color: "text-muted" },
+  { key: "today", label: "היום", icon: "●", color: "text-primary" },
+  { key: "soon", label: "בקרוב", icon: "◐", color: "text-foreground" },
+  { key: "later", label: "אחר כך", icon: "○", color: "text-muted" },
+  { key: "waiting", label: "ממתין", icon: "◷", color: "text-warning" },
+  { key: "agenda", label: "סדר יום", icon: "◈", color: "text-foreground" },
+  { key: "inbox", label: "תיבת דואר", icon: "▣", color: "text-primary" },
+  { key: "done", label: "הושלם", icon: "✓", color: "text-success" },
+  { key: "reference", label: "הפניה", icon: "◆", color: "text-muted" },
 ];
 
 export default function TasksPage() {
@@ -130,7 +130,7 @@ export default function TasksPage() {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="text-muted text-sm animate-pulse">
-          Loading tasks...
+          טוען...
         </div>
       </div>
     );
@@ -139,7 +139,7 @@ export default function TasksPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-6">
       {/* Header */}
-      <h1 className="text-2xl font-bold mb-6">Task Board</h1>
+      <h1 className="text-2xl font-bold mb-6">לוח משימות</h1>
 
       {/* Add Task — sticky */}
       <div className="sticky top-0 z-10 bg-background pb-4">
@@ -163,7 +163,7 @@ export default function TasksPage() {
             onKeyDown={(e) => {
               if (e.key === "Enter") addTask();
             }}
-            placeholder="Add a new task..."
+            placeholder="מה צריך לעשות?"
             className="flex-1 min-w-0 bg-background border border-border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40 placeholder:text-muted"
           />
 
@@ -172,7 +172,7 @@ export default function TasksPage() {
             disabled={!newTask.trim() || adding}
             className="bg-primary text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-primary-hover disabled:opacity-40 disabled:cursor-not-allowed transition-colors shrink-0"
           >
-            Add
+            הוסף משימה
           </button>
         </div>
       </div>
@@ -203,7 +203,7 @@ export default function TasksPage() {
               {/* Tasks */}
               {sectionTasks.length === 0 ? (
                 <div className="px-4 py-3 text-sm text-muted italic">
-                  No tasks
+                  אין משימות
                 </div>
               ) : (
                 <ul className="divide-y divide-border">
@@ -223,8 +223,8 @@ export default function TasksPage() {
                           }`}
                           aria-label={
                             task.completed
-                              ? "Mark as incomplete"
-                              : "Mark as complete"
+                              ? "סמן כלא הושלם"
+                              : "סמן כהושלם"
                           }
                         >
                           {task.completed ? (
@@ -264,7 +264,7 @@ export default function TasksPage() {
                           value={task.section}
                           onChange={(e) => moveTask(task, e.target.value)}
                           className="bg-background border border-border rounded-md px-1.5 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-primary/40"
-                          aria-label="Move to section"
+                          aria-label="העבר לקטע"
                         >
                           {SECTIONS.map((s) => (
                             <option key={s.key} value={s.key}>
@@ -277,7 +277,7 @@ export default function TasksPage() {
                         <button
                           onClick={() => deleteTask(task.id)}
                           className="text-muted hover:text-danger p-1 rounded transition-colors"
-                          aria-label="Delete task"
+                          aria-label="מחק משימה"
                         >
                           <svg
                             width="14"

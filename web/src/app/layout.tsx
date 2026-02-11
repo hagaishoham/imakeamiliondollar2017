@@ -4,8 +4,8 @@ import { Sidebar } from "@/components/Sidebar";
 import { BottomNav } from "@/components/BottomNav";
 
 export const metadata: Metadata = {
-  title: "AI OS - Personal Operating System",
-  description: "Your personal AI-powered productivity system",
+  title: "AI OS - מערכת הפעלה אישית",
+  description: "מערכת הפרודוקטיביות האישית שלך מבוססת AI",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="he" dir="rtl">
       <body className="antialiased">
         <div className="flex h-dvh overflow-hidden">
           <Sidebar />

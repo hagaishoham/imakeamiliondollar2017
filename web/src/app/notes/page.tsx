@@ -78,21 +78,21 @@ export default function NotesPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold">Daily Notes</h1>
+        <h1 className="text-2xl font-bold">יומן יומי</h1>
         <button
           onClick={handleCreateToday}
           disabled={creating}
           className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-primary-hover disabled:opacity-50"
         >
-          {creating ? "Creating..." : "Create Today's Note"}
+          {creating ? "יוצר..." : "צור רשומה להיום"}
         </button>
       </div>
 
       {loading ? (
-        <div className="py-12 text-center text-muted">Loading...</div>
+        <div className="py-12 text-center text-muted">טוען...</div>
       ) : notes.length === 0 ? (
         <div className="py-12 text-center text-muted">
-          No notes yet. Start your day to create one.
+          אין רשומות עדיין. התחל את היום כדי ליצור אחת.
         </div>
       ) : (
         <div className="space-y-3">
@@ -123,7 +123,7 @@ export default function NotesPage() {
                     {note.summary}
                   </p>
                 ) : (
-                  <p className="text-sm text-muted/60 italic">No summary</p>
+                  <p className="text-sm text-muted/60 italic">אין סיכום</p>
                 )}
               </Link>
             ))}
