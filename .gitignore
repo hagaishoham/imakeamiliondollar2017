@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.env
+data/audio/
+data/transcripts/
+data/podcast.db
+*.mp3
+.venv/
+venv/
