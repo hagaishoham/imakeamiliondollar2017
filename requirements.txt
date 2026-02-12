@@ -3,7 +3,6 @@ uvicorn==0.30.6
 yt-dlp==2024.8.6
 youtube-transcript-api==0.6.2
 openai==1.51.0
-feedgen==1.0.0
 python-dotenv==1.0.1
 python-multipart==0.0.9
 aiofiles==24.1.0
